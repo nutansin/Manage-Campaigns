@@ -41,6 +41,10 @@ $(document).ready(function () {
     });
     var campaignTable = $('#campaign-wrapper');
     var campaignBody = '';
+
+    /**
+     * Fill table from JSON data
+     */
     campaignArr.forEach(function (data) {
         campaignBody += '<tr>'+
                 '<td><span>'+ data.date +'</span><span>'+ data.past_day +'</span></td>'+
@@ -50,12 +54,37 @@ $(document).ready(function () {
             +'</tr>'
     });
     campaignTable.find('tbody').append(campaignBody);
-    $('#campaign-wrapper tbody td:nth-child(4) span input').datetimepicker();
+
+    /**
+     * Initialize datetimepicker on each icon
+     */
+    $('#campaign-wrapper tbody td:nth-child(4) span input').datetimepicker({
+        format:'YYYY/MM/DD HH:mm:ss'
+    });
+
+
     $('#campaign-wrapper tbody td:nth-child(4) span input').on('change', function () {
         if(!$(this).val())
             return;
         var tableRow = $(this).closest('tr');
-        var date = $(this).val().split(' ')[0];
-        $(tableRow).find('td:nth-child(1) span:nth-child(1)').text(date);
+        var newDate = $(this).val().split(' ')[0];
+        var oldDate = $(tableRow).find('td:nth-child(1) span:nth-child(1)').text();
+        $(tableRow).find('td:nth-child(1) span:nth-child(1)').text(newDate);
+        var totalDays = showDays(oldDate, newDate);
+        $(tableRow).find('td:nth-child(1) span:nth-child(2)').text(totalDays);
     });
+
+    function showDays(firstDate,secondDate){
+        var startDay = new Date(firstDate);
+        var endDay = new Date(secondDate);
+        var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+        var millisBetween = startDay.getTime() - endDay.getTime();
+        var days = millisBetween / millisecondsPerDay;
+        var totalDays = Math.floor(days);
+        if(totalDays < 0) {
+            return (-1*totalDays) + ' ago';
+        }
+        return totalDays + ' ago';
+    }
 });
