@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: sans-serif;
+}
+header {
+    margin-bottom: 50px;
+}
+.header-wrapper {
+    width: 100%;
+    background: green;
+    padding: 5px 10px;
+    color: white;
+}
+.header-wrapper>div {
+    display: inline-block;
+    clear: both;
+}
+.header-wrapper>div span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-weight: bold;
+}
+.header-wrapper>div:nth-child(2) {
+    float: right;
+    margin-right: 10px;
+}
+.header-wrapper>div img{
+    width: 25px;
+}
+#campaign-wrapper {
+    display: table;
+    table-layout: fixed;
+    width: 65%;
+    margin: auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+#campaign-wrapper thead {
+    background: lightgray;
+}
+#campaign-wrapper thead th, #campaign-wrapper tbody td {
+    width: 29%;
+    padding: 10px;
+    text-align: left;
+}
+#campaign-wrapper tbody td:nth-child(4) {
+    cursor: pointer;
+}
+#campaign-wrapper tbody td:nth-child(4) span {
+    position: relative;
+}
+#campaign-wrapper tbody td:nth-child(4) input {
+     width: 20px;
+     z-index: 2;
+     border: 0;
+     /* display: inline-block; */
+     position: absolute;
+     background-color: transparent;
+}
+ #campaign-wrapper tbody td:nth-child(4) img {
+     position: absolute;
+     z-index: 1;
+     left: 0;
+ }
+#campaign-wrapper tbody td span {
+    display: block;
+    margin-bottom: 5px;
+}
+#campaign-wrapper tbody td img {
+    width: 15px;
+    height: auto;
+}
+#campaign-wrapper tbody td:nth-child(3) span {
+
+}
